@@ -15,9 +15,9 @@
     "heading_scale": 115,
     "type_body_font": "newsreader_n4",
     "body_scale": 100,
-    "page_width": 1400,
+    "page_width": 1300,
     "spacing_sections": 12,
-    "spacing_grid_horizontal": 8,
+    "spacing_grid_horizontal": 36,
     "spacing_grid_vertical": 8,
     "animations_reveal_on_scroll": true,
     "animations_hover_elements": "none",
@@ -53,10 +53,12 @@
     "card_shadow_horizontal_offset": 0,
     "card_shadow_vertical_offset": 4,
     "card_shadow_blur": 5,
+    "card_swatches": true,
+    "card_swatch_lazy_load": true,
     "collection_card_style": "standard",
     "collection_card_image_padding": 0,
     "collection_card_text_alignment": "left",
-    "collection_card_color_scheme": "scheme-2",
+    "collection_card_color_scheme": "scheme-1",
     "collection_card_border_thickness": 0,
     "collection_card_border_opacity": 10,
     "collection_card_corner_radius": 0,
@@ -147,11 +149,11 @@
         "settings": {
           "background": "#ffffff",
           "background_gradient": "",
-          "text": "#121212",
-          "button": "#121212",
-          "button_label": "#ffffff",
-          "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "text": "#1f727c",
+          "button": "#ffffff",
+          "button_label": "#1f727c",
+          "secondary_button_label": "#1f727c",
+          "shadow": "rgba(0,0,0,0)"
         }
       },
       "scheme-2": {

@@ -125,7 +125,6 @@
 .card__content {
   display: grid;
   grid-template-rows: minmax(0, 1fr) max-content minmax(0, 1fr);
-  padding: 1rem;
   width: 100%;
   flex-grow: 1;
 }
@@ -136,7 +135,7 @@
 
 .card__information {
   grid-row-start: 2;
-  padding: 1.3rem 1rem;
+  padding: 1.3rem 0;
 }
 
 .card:not(.ratio) > .card__content {
@@ -263,12 +262,7 @@
   }
 }
 
-@media screen and (min-width: 750px) {
-  .card__information {
-    padding-bottom: 1.7rem;
-    padding-top: 1.7rem;
-  }
-}
+
 
 .badge__new {
   background-color: #0099DF;
