@@ -1151,6 +1151,7 @@ class ProductRecommendations extends HTMLElement {
 
         if (recommendations?.innerHTML.trim().length) {
           this.innerHTML = recommendations.innerHTML;
+          this.executeScripts(this);
         }
 
         if (!this.querySelector('slideshow-component') && this.classList.contains('complementary-products')) {
@@ -1165,7 +1166,16 @@ class ProductRecommendations extends HTMLElement {
         console.error(e);
       });
   }
-}
+  executeScripts(element) {
+    const scripts = element.querySelectorAll('script');
+    scripts.forEach((script) => {
+      const newScript = document.createElement('script');
+      newScript.textContent = script.textContent;
+      newScript.async = false;
+      document.body.appendChild(newScript).parentNode.removeChild(newScript);
+    });
+  }
+} 
 
 customElements.define('product-recommendations', ProductRecommendations);
 

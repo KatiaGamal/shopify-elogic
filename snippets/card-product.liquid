@@ -28,6 +28,69 @@
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
+
+{% assign use_card_swatches = false %}
+{% if settings.card_swatches %}
+  {% unless disable_card_swatches %}
+    {% assign use_card_swatches = true %}
+  {% endunless %}
+{% endif %}
+{% if use_card_swatches %} 
+  <script>
+  var variantDataMap{{ section.id | replace: '-', '_' }}_{{ card_product.id | replace: '-', '_' }} = {
+    {% assign isFirstVariant = true %}  
+      {% for variant in card_product.variants %}
+        {% if variant.featured_media %}
+          {% unless isFirstVariant %},{% endunless %}
+          "{{ variant.id }}": {
+            "imageUrl": "{{ variant.featured_media | img_url: 'master' }}",
+            {% if card_product.url contains '?' %}
+              "productUrl": "{{ card_product.url | append: '&variant=' | append: variant.id }}"
+            {% else %}
+              "productUrl": "{{ card_product.url | append: '?variant=' | append: variant.id }}"
+            {% endif %}
+          }
+          {% assign isFirstVariant = false %} 
+        {% endif %}
+      {% endfor %}
+  };
+  </script>
+  <style>
+    :root {
+      --card-swatch-size: {{ settings.card_swatch_size_custom }}px;
+      --card-swatch-border-radius: {% if settings.card_swatch_shape_custom == 'circle' %}50%{% else %}0%{% endif %};
+    }
+  </style>
+  {{ 'component-card-variant-swatch-custom.css' | asset_url | stylesheet_tag }}
+  
+  {% assign variant_option_name = settings.card_variant_option_name %}
+  {% assign lazy_load_all_variants = settings.card_swatch_lazy_load %} 
+  {% if card_product.metafields.custom.variant_swatch_map_override.value %}
+    {% assign target_entry = card_product.metafields.custom.variant_swatch_map_override.value %}
+  {% else %}  
+    {% assign entry_title = settings.card_variant_swatch_metaobject %}
+    {% assign target_entry = nil %}
+    {% for entry in shop.metaobjects.variant_swatch_map.values %}
+      {% if entry.title == entry_title  %}
+        {% assign target_entry = entry %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if target_entry %}
+    {% assign variant_images_data = target_entry.variant_images_json %}
+  {% else %}
+    {% assign variant_images_data = nil %}
+  {% endif %}
+  
+  <span class="card-product-custom-div" 
+    data-section-id="{{ section.id }}" 
+    data-product-id="{{ card_product.id }}"
+    data-lazy-load-all-variants="{{ lazy_load_all_variants }}"
+  >
+{% endif %}
+
 {%- if card_product and card_product != empty -%}
   {%- liquid
     assign ratio = 1
@@ -566,59 +629,29 @@
           {%- endif -%}
         </div>
       </div>
-    </div>
-  </div>
-{%- else -%}
-  {%- liquid
-    assign ratio = 1
-    assign placeholder = true
-    if media_aspect_ratio == 'portrait'
-      assign ratio = 0.8
-    endif
-  -%}
-  <div class="card-wrapper product-card-wrapper underline-links-hover">
-    <div
-      class="
-        card card--{{ settings.card_style }}
-        {% if extend_height %} card--extend-height{% endif %}
-        {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
-        {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
-      "
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-    >
-      <div
-        class="card__inner{% if settings.card_style == 'standard' %} color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
-      >
-        <div
-          class="card__media {% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
-        >
-          <div
-            class="media media--transparent"
-          >
-            {%- if placeholder_image -%}
-              {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- else -%}
-              {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% if use_card_swatches %}
+        <div class="collection-product-card__variants card-swatch--{{ settings.card_style }}">
+          {% assign card_has_swatches = false %}
+          {%- for card_product_option in card_product.options_with_values -%}
+            {% if card_product_option.name == variant_option_name %}
+              {% assign card_has_swatches = true %}
+              {% assign variant_options_images = variant_images_data.value
+                | where: 'variant_name', card_product_option.name
+              %}
+              {% render 'card-variant-swatch-custom',
+                product: card_product,
+                option: card_product_option,
+                variant_images_data: variant_options_images,
+                lazy_load_all_variants: lazy_load_all_variants
+              %}
             {% endif %}
-          </div>
+          {%- endfor -%}
         </div>
-      </div>
-      <div class="card__content">
-        <div class="card__information">
-          <h3 class="card__heading card__heading--placeholder{% if settings.card_style == 'standard' %} h5{% endif %}">
-            <a role="link" aria-disabled="true" class="full-unstyled-link">
-              {{ 'onboarding.product_title' | t }}
-            </a>
-          </h3>
-          <div class="card-information">
-            {%- if show_vendor -%}
-              <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-              <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
-            {%- endif -%}
-            {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
-          </div>
-        </div>
-      </div>
+      {% endif %}
     </div>
   </div>
+
+  {% if use_card_swatches %} 
+    </span>  
+  {% endif %}
 {%- endif -%}
