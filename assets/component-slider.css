@@ -370,9 +370,9 @@ slider-component.slider-component-full-width {
 }
 
 @media (min-width: 990px) {
-  .custom-padding-on-slide {
-    padding-right: 5px;
-  } 
+  .padding {
+    padding: 0;
+  }
 }
 
 @media (min-width: 989px) {
