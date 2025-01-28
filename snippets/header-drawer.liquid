@@ -12,8 +12,9 @@
       aria-label="{{ 'sections.header.menu' | t }}"
     >
       <span>
-        {{- 'icon-hamburger.svg' | inline_asset_content -}}
-        {{- 'icon-close.svg' | inline_asset_content -}}
+        <span class="svg-wrapper">
+          <img src="https://cdn.shopify.com/s/files/1/0677/6419/1421/files/left.svg?v=1737992249" alt="menu">
+        </span>
       </span>
     </summary>
     <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">

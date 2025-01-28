@@ -68,11 +68,9 @@
   padding-left: 1rem;
   text-align: left;
   min-height: calc(4rem + var(--inputs-border-width) * 2);
-  min-width: calc(7rem + var(--inputs-border-width) * 2);
 }
 
 .disclosure__button.localization-form__select {
-  padding: calc(2rem + var(--inputs-border-width));
   background: rgb(var(--color-background));
 }
 
@@ -91,12 +89,11 @@
   -moz-appearance: none;
   color: rgb(var(--color-foreground));
   width: 100%;
-  padding-right: 4rem;
   padding-bottom: 1.5rem;
 }
 
 .disclosure .localization-form__select {
-  padding-top: 1.5rem;
+  padding-top: 2.1rem;
 }
 
 .localization-selector option {
@@ -386,7 +383,6 @@
 }
 
 .js .header-localization:not(.menu-drawer__localization) .localization-form__select {
-  padding: 0 2.7rem 0 1.2rem;
   width: max-content;
   height: 3.8rem;
 }
@@ -431,7 +427,6 @@
 .menu-drawer__localization .localization-form__select {
   background-color: initial;
   margin-top: 0;
-  padding: 1rem 3.6rem 1rem 0rem;
 }
 
 .menu-drawer__localization .localization-form {
