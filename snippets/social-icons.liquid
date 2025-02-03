@@ -8,13 +8,24 @@
     class: 'my-class'
   %}
 {% endcomment %}
+<style>
+  .list-social__item {
+    width: 35px;
+    height: 35px;
+  }
+  .list-social__link {
+
+    padding: 10px;
+  }
+
+</style>
 
 <ul class="list-unstyled list-social{% if class %} {{ class}}{% endif %}" role="list">
   {%- if settings.social_facebook_link != blank -%}
     <li class="list-social__item">
       <a href="{{ settings.social_facebook_link }}" class="link list-social__link">
         <span class="svg-wrapper">
-          {{- 'icon-facebook.svg' | inline_asset_content -}}
+          {{- 'facebook.svg' | inline_asset_content -}}
         </span>
         <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
       </a>
@@ -24,7 +35,7 @@
     <li class="list-social__item">
       <a href="{{ settings.social_instagram_link }}" class="link list-social__link">
         <span class="svg-wrapper">
-          {{- 'icon-instagram.svg' | inline_asset_content -}}
+          {{- 'instagram.svg' | inline_asset_content -}}
         </span>
         <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
       </a>
@@ -34,10 +45,20 @@
     <li class="list-social__item">
       <a href="{{ settings.social_youtube_link }}" class="link list-social__link">
         <span class="svg-wrapper">
-          {{- 'icon-youtube.svg' | inline_asset_content -}}
+          {{- 'youtube.svg' | inline_asset_content -}}
         </span>
         <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
       </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_linkedin_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_linkedin_link }}" class="link list-social__link" >
+        <span class="svg-wrapper">
+          {{- 'linkedin.svg' | inline_asset_content -}}
+        </span>
+        <span class="visually-hidden">{{ 'general.social.links.linkedin' | t }}</span>
+     </a>
     </li>
   {%- endif -%}
   {%- if settings.social_tiktok_link != blank -%}

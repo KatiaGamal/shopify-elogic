@@ -11,9 +11,25 @@
   display: block;
 }
 
+.footer-logo {
+  height: 35px;
+}
+
+.footer-logo-img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 900px) {
+  .footer-logo {
+    height: 50px;
+  }
+}
+
 @media screen and (max-width: 749px) {
   .footer .grid {
     display: block;
+    width: 100%;
   }
 
   .footer-block.grid__item {
@@ -51,7 +67,17 @@
 
 .footer__content-bottom-wrapper {
   display: flex;
+  justify-content: flex-end;
   width: 100%;
+}
+
+.footer-bottom-content {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 749px) {
@@ -66,7 +92,7 @@
   .footer__content-bottom-wrapper {
     flex-wrap: wrap;
     row-gap: 1.5rem;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   .footer__content-bottom.scroll-trigger.animate--slide-in {
@@ -80,14 +106,8 @@
   align-items: center;
 }
 
-@media screen and (max-width: 749px) {
-  .footer__localization:empty + .footer__column {
-    padding-top: 1.5rem;
-  }
-}
-
 .footer__column {
-  width: 100%;
+  width: 360px;
   align-items: flex-end;
 }
 
@@ -96,8 +116,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 2rem;
-  padding-right: 2rem;
 }
 
 @media screen and (min-width: 750px) {
@@ -128,8 +146,13 @@
 .footer-block--newsletter {
   display: flex;
   align-items: flex-end;
-  margin-top: 3rem;
   gap: 1rem;
+  max-width: 328px;
+}
+
+.newsletter-head,
+.newsletter-text {
+  font-size: 15px;
 }
 
 .footer-block--newsletter:only-child {
@@ -176,12 +199,20 @@
 }
 
 .footer-block__newsletter {
-  text-align: center;
   flex-grow: 1;
 }
 
 .newsletter-form__field-wrapper {
   max-width: 36rem;
+}
+
+.field__input {
+  background-color: white;
+  color: #1F727C;
+}
+
+.field__label {
+  color: #1F727C;
 }
 
 @media screen and (min-width: 750px) {
@@ -254,7 +285,7 @@
 .footer__localization {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content:flex-start;
   align-content: center;
   flex-wrap: wrap;
   padding: 1rem 1rem 0;
@@ -293,6 +324,8 @@
 .footer__copyright {
   text-align: center;
   margin-top: 1.5rem;
+  width: 180px;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 750px) {
@@ -505,4 +538,121 @@
       padding-left: 3rem;
     }
   }
+}
+
+/* Custom styles */
+
+@media (max-width: 743px) {
+  .footer-block__details-content {
+    display: none;
+  }
+
+  .footer-block__heading {
+    cursor: pointer;
+    position: relative;
+    
+    &::after {
+      content: '+'; 
+      position: absolute;
+      right: 10px;
+      transition: transform 0.5s ease;
+    }
+    
+    &.active::after {
+      transform: rotate(180deg);
+    }
+  }
+
+  .footer-block.open .footer-block__details-content {
+    display: block;
+  }
+}
+
+.social-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-block-heading, .top-block-heading {
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  letter-spacing: 2px;
+  color: white;
+  align-self: center;
+  font-size: 12px;
+}
+
+.top__block {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  height: 100%;
+
+}
+
+@media (min-width: 1000px) {
+  .top__block {
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    width: 280px;
+    height: 230px;
+    margin-right: 40px;
+  }
+}
+
+.logo-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 15px;
+  gap: 20px;
+}
+
+@media (min-width: 1000px) {
+  .flex {
+    flex-direction: row;
+    margin: 40px;
+    gap: 40px;
+  }
+}
+
+.footer__blocks-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
+@media (min-width: 800px) {
+  .footer__blocks-wrapper {
+    flex-direction: row;
+    margin: 0 20px;
+  }
+}
+
+.item--footer {
+  width: 100%;
+  margin: 3px;
+}
+
+@media (min-width: 1000px) {
+  .item--footer {
+    width: calc(100% / 2,5);
+ }
 }
