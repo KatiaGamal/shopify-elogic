@@ -148,23 +148,10 @@ slider-component.slider-component-full-width {
     scroll-padding-left: var(--desktop-margin-left-first-item);
   }
 
-  /* Fix to show some space at the end of our sliders in all browsers */
-  .slider--desktop:after {
-    content: '';
-    width: 0;
-    padding-left: 5rem;
-    margin-left: calc(-1 * var(--grid-desktop-horizontal-spacing));
-  }
-
   .slider.slider--desktop .slider__slide {
     margin-bottom: 0;
     padding-top: max(var(--focus-outline-padding), var(--shadow-padding-top));
     padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
-  }
-
-  .slider--desktop .slider__slide:first-child {
-    margin-left: var(--desktop-margin-left-first-item);
-    scroll-margin-left: var(--desktop-margin-left-first-item);
   }
 
   .slider-component-full-width .slider--desktop {
@@ -194,7 +181,7 @@ slider-component.slider-component-full-width {
   }
 
   .slider--desktop.grid--2-col-desktop .grid__item {
-    width: calc((100% - var(--desktop-margin-left-first-item)) / 2 - var(--grid-desktop-horizontal-spacing) * 5);
+    width: calc((100% - var(--desktop-margin-left-first-item)) / 2.3 - var(--grid-desktop-horizontal-spacing) * 5);
   }
 
   .slider--desktop.grid--1-col-desktop .grid__item {
@@ -264,16 +251,17 @@ slider-component.slider-component-full-width {
 }
 
 .slider-counter__link--dots .dot {
-  width: 1rem;
-  height: 1rem;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  border: 0.1rem solid rgba(var(--color-foreground), 0.5);
+  border: none;
+  background-color: #D7D7D7;
   padding: 0;
   display: block;
 }
 
 .slider-counter__link--active.slider-counter__link--dots .dot {
-  background-color: rgb(var(--color-foreground));
+  background-color: black; 
 }
 
 @media screen and (forced-colors: active) {
@@ -318,7 +306,7 @@ slider-component.slider-component-full-width {
 }
 
 @media screen and (min-width: 990px) {
-  .slider:not(.slider--everywhere):not(.slider--desktop) + .slider-buttons {
+  .slider:not(.slider--everywhere) + .slider-buttons {
     display: none;
   }
 }
@@ -374,4 +362,30 @@ slider-component.slider-component-full-width {
 
 .slider-button--prev:not([disabled]):hover .icon {
   transform: rotate(90deg) scale(1.1);
+}
+
+.custom-padding-on-slide {
+  padding-left: 0;
+  padding-right: 20px;
+}
+
+@media (min-width: 990px) {
+  .padding {
+    padding: 0;
+  }
+}
+
+@media (min-width: 989px) {
+  .custom-padding-carousel:not(:last-child) {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 30px;
+  }
+}
+  
+
+@media (max-width: 989px) {
+  .custom-padding-carousel {
+    padding: 7px;
+  }
 }

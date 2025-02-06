@@ -1,1 +1,217 @@
-{"sections":{"collage_YEawED":{"type":"collage","blocks":{"image_Qy9KcF":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/threader-necklace-closeup_925x_f991e800-80bf-4536-a498-8d837048d384.jpg"}},"image_TfH6K7":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/silver-origami-necklace_925x_e7c1c3f0-7bc4-4d6f-9251-23e88d26f16c.jpg"}},"image_UfT8ih":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/elephant-earrings_925x_7fe59cba-b635-46ea-96bc-c1a8ded4f586.jpg"}}},"block_order":["image_Qy9KcF","image_TfH6K7","image_UfT8ih"],"settings":{"heading":"","heading_size":"h1","desktop_layout":"left","mobile_layout":"column","card_styles":"product-card-wrapper","color_scheme":"","padding_top":0,"padding_bottom":0}},"featured_collection":{"type":"featured-collection","settings":{"title":"NEW ARRIVED","heading_size":"h2","description":"","show_description":false,"description_style":"body","collection":"bracelets","products_to_show":4,"columns_desktop":4,"full_width":true,"show_view_all":true,"view_all_style":"link","enable_desktop_slider":false,"color_scheme":"scheme-1","image_ratio":"portrait","image_shape":"default","show_secondary_image":false,"show_vendor":true,"show_rating":false,"quick_add":"none","columns_mobile":"2","swipe_on_mobile":true,"padding_top":44,"padding_bottom":36}},"rich_text_ME4DCV":{"type":"rich-text","blocks":{"heading_GU8Pzk":{"type":"heading","settings":{"heading":"Talk about your brand","heading_size":"h1"}},"caption_wzkGYA":{"type":"caption","settings":{"caption":"Add a tagline","text_style":"caption-with-letter-spacing","text_size":"medium"}},"button_iG4FPC":{"type":"button","settings":{"button_label":"Button label","button_link":"","button_style_secondary":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading_GU8Pzk","caption_wzkGYA","button_iG4FPC"],"settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"scheme-4","full_width":true,"padding_top":52,"padding_bottom":52}}},"order":["collage_YEawED","featured_collection","rich_text_ME4DCV"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collage_YEawED": {
+      "type": "collage",
+      "blocks": {
+        "image_Qy9KcF": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/threader-necklace-closeup_925x_f991e800-80bf-4536-a498-8d837048d384.jpg"
+          }
+        },
+        "image_TfH6K7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/silver-origami-necklace_925x_e7c1c3f0-7bc4-4d6f-9251-23e88d26f16c.jpg"
+          }
+        },
+        "image_UfT8ih": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/elephant-earrings_925x_7fe59cba-b635-46ea-96bc-c1a8ded4f586.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_Qy9KcF",
+        "image_TfH6K7",
+        "image_UfT8ih"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "column",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "",
+        "padding_top": 12,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "BEST SELLERS",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "bracelets",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_ME4DCV": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_GU8Pzk": {
+          "type": "heading",
+          "settings": {
+            "heading": "LIMITED TIME ONLY",
+            "heading_size": "h1"
+          }
+        },
+        "caption_wzkGYA": {
+          "type": "caption",
+          "settings": {
+            "caption": "SALE UP TO 40% OFF",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "button_iG4FPC": {
+          "type": "button",
+          "settings": {
+            "button_label": "SHOP NOW",
+            "button_link": "shopify://collections",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        },
+        "timer_WJjfdd": {
+          "type": "timer",
+          "settings": {
+            "finish_date": "2025-02-02",
+            "finish_time": "12:00"
+          }
+        }
+      },
+      "block_order": [
+        "heading_GU8Pzk",
+        "caption_wzkGYA",
+        "button_iG4FPC",
+        "timer_WJjfdd"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-7186301e-bf7d-4c89-8829-9ad4da6970cb",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "featured_collection_rHGAXV": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "NEW ARRIVED",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "bracelets",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "enable_desktop_slider": true,
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_NpbJhR": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_n48ihG": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bracelets"
+          }
+        },
+        "featured_collection_Y6Kfji": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "chokers"
+          }
+        },
+        "featured_collection_paadtn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "earrings"
+          }
+        },
+        "featured_collection_KNEEct": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "necklaces"
+          }
+        },
+        "featured_collection_qQqGE9": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bracelets"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_n48ihG",
+        "featured_collection_Y6Kfji",
+        "featured_collection_paadtn",
+        "featured_collection_KNEEct",
+        "featured_collection_qQqGE9"
+      ],
+      "settings": {
+        "image_ratio": "portrait",
+        "columns_desktop": 2,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "swipe_on_desktop": true,
+        "padding_top": 28,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "collage_YEawED",
+    "featured_collection",
+    "rich_text_ME4DCV",
+    "featured_collection_rHGAXV",
+    "collection_list_NpbJhR"
+  ]
+}

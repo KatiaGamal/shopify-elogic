@@ -769,7 +769,10 @@ summary::-webkit-details-marker {
 /* component-title */
 .title,
 .title-wrapper-with-link {
+  display: flex;
+  justify-content: center;
   margin: 3rem 0 2rem;
+  letter-spacing: 5px;
 }
 
 .title-wrapper-with-link .title {
@@ -856,6 +859,15 @@ summary::-webkit-details-marker {
 
 .title-wrapper--no-top-margin > .title {
   margin-top: 0;
+}
+
+.colection-list-title {
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
 }
 
 .subtitle {
@@ -1103,6 +1115,22 @@ summary::-webkit-details-marker {
   }
 }
 
+@media (min-width: 990px) {
+  
+  .custom-gap-collection-list {
+    display: flex;
+    gap:1px;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 989px) {
+
+  .custom-gap-featured {
+    display: flex;
+    gap:1px;
+  }
+} 
+
 /* component-media */
 .media {
   display: block;
@@ -1316,6 +1344,11 @@ button.shopify-payment-button__button--unbranded {
   padding: 1.2rem 2.6rem;
 }
 
+.non-button {
+  width: 1px;
+  height: 1px;
+  display: none;
+}
 /* Shopify Accelerated Checkout */
 
 shopify-accelerated-checkout {

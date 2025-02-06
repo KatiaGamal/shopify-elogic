@@ -1,0 +1,81 @@
+{{ 'countdown.css' | asset_url | stylesheet_tag }}
+
+{% if end_date != blank %}
+  <div class="timer">
+    <div class="timer-display">
+      <div class="timer-block">
+        <span class="timer-block__num js-timer-days">00</span>
+        <span class="timer-block__unit">DAY</span>
+      </div>
+      <div class="timer-block">
+        <span class="timer-block__num js-timer-hours">00</span>
+        <span class="timer-block__unit">HOUR</span>
+      </div>
+      <div class="timer-block">
+        <span class="timer-block__num js-timer-minutes">00</span>
+        <span class="timer-block__unit">MIN</span>
+      </div>
+      <div class="timer-block">
+        <span class="timer-block__num js-timer-seconds">00</span>
+        <span class="timer-block__unit">SEC</span>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    const second = 1000,
+          minute = second * 60,
+          hour = minute * 60,
+          day = hour * 24;
+
+    {%- if reset_in != blank -%}
+      let shopifyExplorerCustomUnits = {
+        ms: 1/1000,
+
+        m: 60,
+        min: 60, mins: 60,
+        minute: 60, minutes: 60,
+
+        h: 60*60,
+        hr: 60*60, hrs: 60*60,
+        hour: 60*60, hours: 60*60,
+
+        d: 60*60*24,
+        day: 60*60*24, days: 60*60*24,
+      };
+
+      Date.shopifyExplorerParseInterval = function(interval) {
+        let seconds = 0;
+        interval.replace(/(\d+(?:\.\d*)?)\s*([a-z]+)?/ig, function($0, number, unit) {
+          if (unit) {
+            number *= shopifyExplorerCustomUnits[unit.toLowerCase()] || 1;
+          }
+          seconds += +number;
+        });
+        return seconds * 1000;
+      };
+      function shopifyExplorerTimesUntilDefinedTime(time) {
+        let midnight = new Date(time);
+        midnight.setHours( 24 );
+        midnight.setMinutes( 0 );
+        midnight.setSeconds( 0 );
+        midnight.setMilliseconds( 0 );
+        return midnight.getTime();
+      }
+      let current = new Date();
+      let compareTime = current.getTime() + Date.shopifyExplorerParseInterval('{{- reset_in -}}');
+      let countDown = shopifyExplorerTimesUntilDefinedTime(compareTime);
+    {%- elsif end_date != blank-%}
+      let countDown = new Date('{{- end_date -}}T{{- end_time -}}').getTime();
+    {%- endif -%}
+
+    let x = setInterval(function() {
+      let now = new Date().getTime(),
+        distance = countDown - now;
+      document.querySelector('.js-timer-days').innerText = Math.floor(distance / (day)),
+        document.querySelector('.js-timer-hours').innerText = Math.floor((distance % (day)) / (hour)),
+        document.querySelector('.js-timer-minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+        document.querySelector('.js-timer-seconds').innerText = Math.floor((distance % (minute)) / second);
+    }, second)
+  </script>
+{% endif %}

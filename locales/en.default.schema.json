@@ -652,6 +652,9 @@
         },
         "swipe_on_mobile": {
           "label": "Enable swipe on mobile"
+        },
+        "swipe_on_desktop": {
+          "label": "Enable swipe on desktop"
         }
       },
       "blocks": {

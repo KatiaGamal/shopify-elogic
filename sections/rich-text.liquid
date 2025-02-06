@@ -16,7 +16,7 @@
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
   <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
-    <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
+    <div class="rich-text__wrapper">
       <div class="rich-text__blocks {{ section.settings.content_alignment }}">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
@@ -87,9 +87,17 @@
                   </a>
                 {%- endif -%}
               </div>
-          {%- endcase -%}
+            {%- endcase -%}
         {%- endfor -%}
-      </div>
+        </div>
+        
+        {% assign timer_block = section.blocks | where: 'type', "timer" | first %}
+        <div class="countdown__block">
+          {% include 'countdown',
+            end_date: timer_block.settings.finish_date,
+            end_time: timer_block.settings.finish_time
+          %}
+        </div>
     </div>
   </div>
 </div>
@@ -326,6 +334,26 @@
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
         }
       ]
+    },
+    {
+      "type": "timer",
+      "name": "Timer",
+      "settings": [
+          {
+            "type": "text",
+            "id": "finish_date",
+            "default": "2025-02-02",
+            "label": "Finish date",
+            "info": "YYYY-MM-DD"
+          },
+          {
+            "type": "text",
+            "id": "finish_time",
+            "default": "12:00",
+            "label": "Finish time",
+            "info": "HH:mm"
+          }
+      ]
     }
   ],
   "presets": [
@@ -340,9 +368,13 @@
         },
         {
           "type": "button"
+        },
+        {
+          "type": "timer"
         }
       ]
     }
   ]
 }
 {% endschema %}
+

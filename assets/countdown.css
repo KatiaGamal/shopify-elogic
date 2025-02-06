@@ -1,0 +1,49 @@
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  padding: 10px;
+  margin: 15px 0;
+}
+
+.timer--expired {
+  display: none;
+}
+
+.timer-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+}
+
+.timer-block {
+  position: relative;
+  width: 40%;
+  padding: 0 15px;
+
+&:not(:last-child):after {
+   content: ':';
+   position: absolute;
+   right: 0;
+   top: 5px;
+ }
+}
+
+.timer-block__num,
+.timer-block__unit {
+  display: block;
+  text-align: center;
+  font-size: 26px;
+  letter-spacing: 2px;
+}
+
+.timer-block__unit {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
