@@ -61,7 +61,7 @@
   >
     <div class="flag">
       <img 
-        src="/assets/{{ localization.language.iso_code }}.svg" 
+        src="{{ localization.language.iso_code | append: '.svg' | asset_url }}" 
         alt="{{ localization.country.name }}"
         width="15"
         height="15"
