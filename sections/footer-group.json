@@ -17,15 +17,15 @@
         "link_list_eBzFwh": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
+            "heading": "SUPPORT",
             "menu": "footer"
           }
         },
         "link_list_cUrTBV": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
-            "menu": "footer"
+            "heading": "DISCOVER",
+            "menu": "main-menu"
           }
         }
       },
@@ -37,14 +37,14 @@
         "color_scheme": "scheme-4a0f5ba4-6b35-4c98-b6eb-b7b49aa5e471",
         "button_label": "Subscribe",
         "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "newsletter_description": "Description",
+        "newsletter_heading": "CALLING ALL ELOGIC SUPERFANS!",
+        "newsletter_description": "Sign up to be the first to hear about new products and exclusive offers.",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": false,
         "enable_language_selector": true,
         "payment_enable": true,
-        "show_policy": true,
+        "show_policy": false,
         "margin_top": 0,
         "padding_top": 36,
         "padding_bottom": 36
