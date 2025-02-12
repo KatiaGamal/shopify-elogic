@@ -28,7 +28,7 @@
         {{- 'icon-close.svg' | inline_asset_content -}}
       </button>
       <div class="search-block">
-      {% render 'header-search', input_id: 'Search-In-Modal-2' %}
+        {% render 'header-search', input_id: 'Search-In-Modal-2' %}
       </div>
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
@@ -55,6 +55,9 @@
                           tabindex="-1"
                         >
                           <div class="menu-drawer__inner-submenu">
+                            <div class="search-block">
+                              {% render 'header-search', input_id: 'Search-In-Modal-3' %}
+                            </div>
                             <button class="menu-drawer__close-button list-style link link--text focus-inset" aria-expanded="true">
                               <span class="svg-wrapper">
                                 {{- 'menu-arrow.svg' | inline_asset_content -}}

@@ -3622,3 +3622,9 @@ details-disclosure > details {
   margin-top: 12px;
   margin-left: 4px;
 }
+
+@media (max-width: 750px) {
+  .swym-header-launcher {
+    display: none;
+  }
+}

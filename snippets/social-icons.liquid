@@ -8,17 +8,6 @@
     class: 'my-class'
   %}
 {% endcomment %}
-<style>
-  .list-social__item {
-    width: 35px;
-    height: 35px;
-  }
-  .list-social__link {
-
-    padding: 10px;
-  }
-
-</style>
 
 <ul class="list-unstyled list-social{% if class %} {{ class}}{% endif %}" role="list">
   {%- if settings.social_facebook_link != blank -%}
