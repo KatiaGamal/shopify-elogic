@@ -10,7 +10,7 @@
 {%- endstyle -%}
 
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="collection-hero_custom collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     <div class="collection-hero__text-wrapper">
       <h1 class="collection-hero__title">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
@@ -42,6 +42,29 @@
         >
       </div>
     {%- endif -%}
+    <div>
+      <ul
+        class="subcategory_block"
+        role="list">
+        {%- for block in section.blocks -%}
+          {% if block.type == "section" %}
+            <li class="subcategory_block-item">
+              <a 
+                href="{{ block.settings.image_link | escape }}" 
+                class="subcategory_block-link"
+              >
+                <img
+                  src="{{ block.settings.image | img_url: '500x' }}"
+                  alt="{{ block.settings.category_title | escape }}"
+                  class="subcategory_block-img"
+                >
+                <h3 class="item-name">{{ block.settings.category_title }}</h3>
+              </a>
+            </li>
+          {% endif %}
+        {%- endfor -%}
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -72,6 +95,28 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "section",
+      "name": "custom collage section",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "collage Image"
+        }, {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image link"
+        }, {
+            "type": "text",
+          "id": "category_title",
+          "label": "Category Title"
+        }
+      ]
     }
   ]
 }
