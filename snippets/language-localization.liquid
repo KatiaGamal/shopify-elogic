@@ -5,6 +5,52 @@
     - localPosition: pass in the position in which the form is coming up to create specific IDs
 {%- endcomment -%}
 
+
+<style>
+  .localization-form__select {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  .flag {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+
+    img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .flag {
+      margin-right: 20px;
+    }
+  }
+
+  .flag svg {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  &[aria-expanded="true"] {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+</style>
+
 <div class="disclosure">
   <button
     type="button"
@@ -13,7 +59,14 @@
     aria-controls="{{ localPosition }}List"
     aria-describedby="{{ localPosition }}Label"
   >
-    <span>{{ localization.language.endonym_name | capitalize }}</span>
+    <div class="flag">
+      <img 
+        src="{{ localization.language.iso_code | append: '.svg' | asset_url }}" 
+        alt="{{ localization.country.name }}"
+        width="15"
+        height="15"
+      >
+    </div>
     {{ 'icon-caret.svg' | inline_asset_content }}
   </button>
   <div class="disclosure__list-wrapper language-selector" hidden>

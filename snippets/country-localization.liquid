@@ -33,12 +33,9 @@
     aria-controls="{{ localPosition }}-country-results"
     aria-describedby="{{ localPosition }}Label"
   >
-    <span>
-      {{- localization.country.name }} |
-      {{ localization.country.currency.iso_code }}
-      {{ localization.country.currency.symbol -}}
+    <span class="svg-wrapper">
+      <img src="https://cdn.shopify.com/s/files/1/0677/6419/1421/files/globe.svg?v=1737992249" alt="country localization">
     </span>
-    {{ 'icon-caret.svg' | inline_asset_content }}
   </button>
   <div class="disclosure__list-wrapper country-selector" hidden>
     <div class="country-filter{% unless show_country_filter %} country-filter--no-padding{% endunless %}">
