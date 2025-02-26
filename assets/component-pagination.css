@@ -18,7 +18,8 @@
 .pagination__info {
   height: 40px;
   width: 80px;
-  font-size: 25px;
+  font-size: 22px;
+  margin-top: 10px;
 }
 
 .pagination_button {
