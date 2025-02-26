@@ -1,5 +1,6 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-custom-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
@@ -22,6 +23,11 @@
   <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
+{% assign per_page = section.settings.products_per_page %}
+{% if request.query.limit %}
+  {% assign per_page = request.query.limit | to_integer %}
+{% endif %}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -37,7 +43,8 @@
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
-  {%- paginate collection.products by section.settings.products_per_page -%}
+  {%- assign per_page = request.query.products_per_page | default: section.settings.products_per_page -%}
+  {%- paginate collection.products by per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
       <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
@@ -178,6 +185,45 @@
                     section_id: section.id
                   %}
                 </li>
+                {% if forloop.index == 2  %}
+                  {%- for filter in collection.filters -%}
+                    {%- for value in filter.active_values -%} 
+                      {%- if value -%}
+                        {%- assign filter_on = true -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                    {%- if filter.min_value.value or filter.max_value.value -%}
+                      {%- assign filter_on = true -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- if filter_on -%}
+                    <li class=" custom-card custom-card--filtered">
+                      <div class="custom-banner">
+                        <p class="custom-banner__text custom-banner__text--small"> 
+                          Limited time only
+                        </p>
+                        <p class="custom-banner__text">
+                          SALE UP <br> TO 40% OFF
+                        </p>
+                      </div>
+                    </li>
+                  {%- else -%}
+                    <li class=" custom-card custom-card--regular">
+                      <div class="card-banner">
+                        <p class="card-regular_text">
+                          JUST <br> IN
+                        </p>
+                        </div> 
+                      <a
+                        role="link"
+                        href="/collections"
+                        class="  button custom-card_button"
+                      >
+                        SHOP NOW
+                      </a>
+                    </li> 
+                  {%- endif -%}
+                {% endif %}
                 {%- assign skip_card_product_styles = true -%}
               {%- endfor -%}
             </ul>
@@ -203,10 +249,10 @@
     {
       "type": "range",
       "id": "products_per_page",
-      "min": 8,
-      "max": 36,
-      "step": 4,
-      "default": 16,
+      "min": 7,
+      "max": 35,
+      "step": 1,
+      "default": 15,
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
     },
     {

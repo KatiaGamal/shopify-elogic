@@ -114,6 +114,7 @@
   @media (min-width: 1122px) {
     .subcategory_block {
       flex-wrap: nowrap;
+      gap: 15px;
     }
   }
 
