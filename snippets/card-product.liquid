@@ -91,6 +91,30 @@
   >
 {% endif %}
 
+<style>
+  .vendor__caption {
+    font-size: 16px;
+  }
+  .complementary-products {
+    .card-information {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .vendor__caption {
+      font-size: 14px;
+    }
+    
+    .card__title {
+      font-family: var(--font-body-family);
+      font-weight: 100;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+
 {%- if card_product and card_product != empty -%}
   {%- liquid
     assign ratio = 1
@@ -245,9 +269,9 @@
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
               <div 
                 class="vendor__caption caption-with-letter-spacing light"
-                style="font-size: 16px;"
                 >
-                {{ card_product.vendor }}</div>
+                {{ card_product.vendor }}
+              </div>
             {%- endif -%}
             <h3
             class="card__title card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
@@ -384,25 +408,27 @@
                 </quantity-popover>
               {% endif %}
             {%- endif -%}
-            {% if use_card_swatches %}
-              <div class="collection-product-card__variants card-swatch--{{ settings.card_style }}">
-                {% assign card_has_swatches = false %}
-                {%- for card_product_option in card_product.options_with_values -%}
-                  {% if card_product_option.name == variant_option_name %}
-                    {% assign card_has_swatches = true %}
-                    {% assign variant_options_images = variant_images_data.value
-                      | where: 'variant_name', card_product_option.name
-                    %}
-                    {% render 'card-variant-swatch-custom',
-                      product: card_product,
-                      option: card_product_option,
-                      variant_images_data: variant_options_images,
-                      lazy_load_all_variants: lazy_load_all_variants
-                    %}
-                  {% endif %}
-                {%- endfor -%}
-              </div>
-            {% endif %}
+            {%- if show_swatches -%}
+              {% if use_card_swatches %}
+                <div class="collection-product-card__variants card-swatch--{{ settings.card_style }}">
+                  {% assign card_has_swatches = false %}
+                  {%- for card_product_option in card_product.options_with_values -%}
+                    {% if card_product_option.name == variant_option_name %}
+                      {% assign card_has_swatches = true %}
+                      {% assign variant_options_images = variant_images_data.value
+                        | where: 'variant_name', card_product_option.name
+                      %}
+                      {% render 'card-variant-swatch-custom',
+                        product: card_product,
+                        option: card_product_option,
+                        variant_images_data: variant_options_images,
+                        lazy_load_all_variants: lazy_load_all_variants
+                      %}
+                    {% endif %}
+                  {%- endfor -%}
+                </div>
+              {% endif %}
+            {%- endif -%}
           </div>
         </div>
         {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
