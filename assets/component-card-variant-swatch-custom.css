@@ -1,6 +1,3 @@
-.card-product-custom-div {
-  visibility: hidden;
-}
 
 .card-product-custom-div.loaded {
   visibility: visible;

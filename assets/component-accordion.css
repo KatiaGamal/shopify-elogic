@@ -32,6 +32,7 @@
   min-height: 1.6rem;
   margin: 0;
   word-break: break-word;
+  letter-spacing: 2px;
 }
 
 .accordion .svg-wrapper {
@@ -50,7 +51,6 @@
   margin-bottom: 1.5rem;
   word-break: break-word;
   overflow-x: auto;
-  padding: 0 0.6rem;
 }
 
 .accordion__content img {

@@ -60,6 +60,17 @@
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
 
+        <style>
+          .product-form__submit {
+            background-color: #ff8674;
+            color: white;
+            text-transform: uppercase;
+            &::after {
+              box-shadow: none;
+            }
+          }
+        </style>
+
         <div class="product-form__buttons">
           {%- liquid
             assign check_against_inventory = true
