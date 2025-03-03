@@ -11,6 +11,8 @@
   {% render 'product-media-gallery' %}
 {% endcomment %}
 
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
 {%- liquid
   if section.settings.hide_variants and variant_images.size == product.media.size
     assign single_media_visible = true
@@ -52,7 +54,7 @@
   data-desktop-layout="{{ section.settings.gallery_layout }}"
 >
   <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
-  <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
+  <slideshow-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
     <a class="skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-{{ section.id }}">
       {{ 'accessibility.skip_to_product_info' | t }}
     </a>
@@ -65,7 +67,7 @@
         {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
         <li
           id="Slide-{{ section.id }}-{{ featured_media.id }}"
-          class="product__media-item grid__item slider__slide is-active{% if single_media_visible %} product__media-item--single{% endif %}{% if featured_media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          class="slideshow__slide-my product__media-item grid__item slider__slide is-active{% if single_media_visible %} product__media-item--single{% endif %}{% if featured_media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
           data-media-id="{{ section.id }}-{{ featured_media.id }}"
         >
           {%- assign media_position = 1 -%}
@@ -97,7 +99,7 @@
         {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
           <li
             id="Slide-{{ section.id }}-{{ media.id }}"
-            class="product__media-item grid__item slider__slide{% if single_media_visible %} product__media-item--single{% endif %}{% if product.selected_or_first_available_variant.featured_media == nil and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            class="slideshow__slide-my product__media-item grid__item slider__slide{% if single_media_visible %} product__media-item--single{% endif %}{% if product.selected_or_first_available_variant.featured_media == nil and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
             data-media-id="{{ section.id }}-{{ media.id }}"
           >
             {%- liquid
@@ -129,6 +131,7 @@
       <button
         type="button"
         class="slider-button slider-button--prev"
+        style="display: none;"
         name="previous"
         aria-label="{{ 'general.slider.previous_slide' | t }}"
       >
@@ -136,15 +139,25 @@
           {{- 'icon-caret.svg' | inline_asset_content -}}
         </span>
       </button>
-      <div class="slider-counter caption">
-        <span class="slider-counter--current">1</span>
-        <span aria-hidden="true"> / </span>
-        <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-        <span class="slider-counter--total">{{ media_count }}</span>
+      
+      <div class="slider-counter slider-counter--{{ block.settings.pagination_style }}{% if block.settings.pagination_style == 'counter' or block.settings.pagination_style == 'numbers' %} caption{% endif %}">
+        <div class="slideshow__control-wrapper">
+            {%- for i in (1..media_count) -%}
+              <button
+                class="slider-counter__link slider-counter__link--dots link"
+                aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                aria-controls="Slider-{{ block.id }}"
+              >
+                <span class="dot"></span>
+              </button>
+            {%- endfor -%}
+          </div>
       </div>
+
       <button
         type="button"
         class="slider-button slider-button--next"
+        style="display: none;"
         name="next"
         aria-label="{{ 'general.slider.next_slide' | t }}"
       >
@@ -153,7 +166,8 @@
         </span>
       </button>
     </div>
-  </slider-component>
+  </slideshow-component>
+
   {%- if first_3d_model -%}
     <button
       class="button button--full-width product__xr-button"

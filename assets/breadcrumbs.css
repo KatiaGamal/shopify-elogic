@@ -1,0 +1,35 @@
+.breadcrumbs__block  {
+    display: none;
+}
+
+@media(min-width: 950px) {
+  .breadcrumbs__block {
+    display: flex;
+    list-style: none;
+    padding: 10px 0 0 0;
+    margin: 0;
+  }
+  
+  .breadcrumbs__block li {
+    margin-right: 8px;
+  }
+  
+  .breadcrumbs__block li:not(:last-child)::after {
+    content: "•";
+    margin-left: 8px;
+    color: #1f727c;
+  }
+  
+  .breadcrumbs__block li a {
+    text-decoration: none;
+    color: #1f727c;
+  }
+  
+  .breadcrumbs__block li a:hover {
+    color: #1f727c;
+  }
+  
+  .breadcrumbs__block li span {
+    color:#1f727c;
+  }
+}
