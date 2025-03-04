@@ -1937,7 +1937,10 @@ input[type='checkbox'] {
   opacity: 0.85;
   text-align: center;
   background-color: transparent;
-  border: 0;
+  border-right: 1px solid;
+  border-left: 1px solid;
+  border-top: 0;
+  border-bottom: 0;
   padding: 0 0.5rem;
   width: 100%;
   flex-grow: 1;

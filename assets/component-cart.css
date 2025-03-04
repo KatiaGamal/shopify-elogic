@@ -193,6 +193,8 @@ cart-items {
 }
 
 .cart__ctas {
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
