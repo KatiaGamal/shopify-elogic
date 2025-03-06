@@ -5,10 +5,6 @@
   z-index: 1;
 }
 
-.card--card .quick-add {
-  margin: 0 1.3rem 1rem;
-}
-
 .quick-add-modal {
   box-sizing: border-box;
   opacity: 0;
@@ -358,6 +354,13 @@ quick-add-modal .product-form__buttons {
   padding: 0.8rem;
   min-width: 100%;
   box-sizing: border-box;
+  background-color: white;
+  color: #1f727c;
+  border: 1px solid #1f727c;
+}
+
+.quick-add__submit .loading__spinner::after {
+  box-shadow: none !important;
 }
 
 quick-add-modal .product-media-container.constrain-height {

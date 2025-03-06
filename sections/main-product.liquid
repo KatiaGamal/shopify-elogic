@@ -15,6 +15,7 @@
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'breadcrumbs.css' | asset_url | stylesheet_tag }}
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
@@ -90,15 +91,41 @@
               {%- when '@app' -%}
                 {% render block %}
               {%- when 'text' -%}
+                <style>
+                  .product-vendor {
+                    text-transform: uppercase;
+                    font-size: 22px;
+                  }
+                  .custom-product-title {
+                    font-size: 16px;
+                    font-family: var(--font-body-family);
+                  }
+                </style>
                 <p
-                  class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                  class="product-vendor product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                   {{ block.shopify_attributes }}
                 >
                   {{- block.settings.text -}}
                 </p>
+              {%- when 'breadcrumbs' -%}
+                <nav class="breadcrumbs" aria-label="Breadcrumb"></nav>
+                  <ul class="breadcrumbs__block">
+                    <li>
+                      <a href="{{ routes.root_url }}">Home</a>
+                    </li>
+                    {%- if template contains 'product' -%}
+                      <li>
+                        <a href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>
+                      </li>
+                      <li>
+                        <span>{{ product.title }}</span>
+                      </li>
+                    {%- endif -%}
+                  </ul>
+                </nav>
               {%- when 'title' -%}
-                <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1>{{ product.title | escape }}</h1>
+                <div class="product__title" {{ block.shopify_attributes }} style="margin: 0;">
+                  <h1 class="custom-product-title">{{ product.title | escape }}</h1>
                   <a href="{{ product.url }}" class="product__title">
                     <h2 class="h1">
                       {{ product.title | escape }}
@@ -106,7 +133,7 @@
                   </a>
                 </div>
               {%- when 'price' -%}
-                <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                <div style="font-size: 24px;" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
                     product: product,
                     use_variant: true,
@@ -117,20 +144,6 @@
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
                     <span>{{ 'products.product.volume_pricing.note' | t }}</span>
-                  </div>
-                {%- endif -%}
-                {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                  <div class="product__tax caption rte">
-                    {%- if cart.duties_included and cart.taxes_included -%}
-                      {{ 'products.product.duties_and_taxes_included' | t }}
-                    {%- elsif cart.taxes_included -%}
-                      {{ 'products.product.taxes_included' | t }}
-                    {%- elsif cart.duties_included -%}
-                      {{ 'products.product.duties_included' | t }}
-                    {%- endif -%}
-                    {%- if shop.shipping_policy.body != blank -%}
-                      {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                    {%- endif -%}
                   </div>
                 {%- endif -%}
                 <div {{ block.shopify_attributes }}>
@@ -534,7 +547,7 @@
                             {% render 'icon-accordion', icon: block.settings.icon %}
                             <h2 class="h4 accordion__title">{{ block.settings.block_heading }}</h2>
                           {%- else -%}
-                            <h2 class="h3 accordion__title">{{ block.settings.block_heading }}</h2>
+                            <h2 class="complementary-products_title h3 accordion__title">{{ block.settings.block_heading }}</h2>
                           {%- endif -%}
                         </div>
                         {%- if block.settings.make_collapsible_row -%}
@@ -572,12 +585,17 @@
                                     limit: block.settings.products_per_page
                                     offset: continue
                                   -%}
-                                    <li>
+                                    <li
+                                    class="padding slideshow__slide grid__item{% if show_mobile_slider or show_desktop_slider %} custom-padding-on-slide {% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                                    >
                                       {%- if block.settings.enable_quick_add -%}
                                         {% assign quick_add = 'standard' %}
                                       {%- else -%}
                                         {% assign quick_add = 'none' %}
                                       {%- endif -%}
+                                      <style>
+                                        
+                                      </style>
                                       {% render 'card-product',
                                         card_product: product,
                                         media_aspect_ratio: block.settings.image_ratio,
@@ -585,9 +603,10 @@
                                         lazy_load: false,
                                         skip_styles: skip_card_product_styles,
                                         quick_add: quick_add,
+                                        show_vendor: true,
                                         section_id: section.id,
-                                        horizontal_class: true,
-                                        horizontal_quick_add: true
+                                        horizontal_class: false,
+                                        horizontal_quick_add: false
                                       %}
                                     </li>
                                     {%- assign skip_card_product_styles = true -%}
@@ -601,6 +620,7 @@
                               <button
                                 type="button"
                                 class="slider-button slider-button--prev"
+                                style="display: none;"
                                 name="previous"
                                 aria-label="{{ 'general.slider.previous_slide' | t }}"
                               >
@@ -608,7 +628,7 @@
                                   {{- 'icon-caret.svg' | inline_asset_content -}}
                                 </span>
                               </button>
-                              <div class="slider-counter slider-counter--{{ block.settings.pagination_style }}{% if block.settings.pagination_style == 'counter' or block.settings.pagination_style == 'numbers' %} caption{% endif %}">
+                              <div style="display: none;" class="slider-counter slider-counter--{{ block.settings.pagination_style }}{% if block.settings.pagination_style == 'counter' or block.settings.pagination_style == 'numbers' %} caption{% endif %}">
                                 {%- if block.settings.pagination_style == 'counter' -%}
                                   <span class="slider-counter--current">1</span>
                                   <span aria-hidden="true"> / </span>
@@ -634,7 +654,7 @@
                               </div>
                               <button
                                 type="button"
-                                class="slider-button slider-button--next"
+                                class="slider-button-custom slider-button slider-button--next"
                                 name="next"
                                 aria-label="{{ 'general.slider.next_slide' | t }}"
                               >
@@ -768,6 +788,11 @@
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
+      "limit": 1
+    },
+    {
+      "type": "breadcrumbs",
+      "name": "breadcrumbs",
       "limit": 1
     },
     {

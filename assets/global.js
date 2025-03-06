@@ -827,6 +827,9 @@ class SlideshowComponent extends SliderComponent {
     if (!this.sliderControlWrapper) return;
 
     this.sliderFirstItemNode = this.slider.querySelector('.slideshow__slide');
+    if(!this.sliderFirstItemNode){
+      this.sliderFirstItemNode = this.slider.querySelector('.slideshow__slide-my');
+    }
     if (this.sliderItemsToShow.length > 0) this.currentPage = 1;
 
     this.announcementBarSlider = this.querySelector('.announcement-bar-slider');

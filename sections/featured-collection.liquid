@@ -117,6 +117,7 @@
               show_secondary_image: section.settings.show_secondary_image,
               show_vendor: section.settings.show_vendor,
               show_rating: section.settings.show_rating,
+              show_swatches: section.settings.show_swatches,
               skip_styles: skip_card_product_styles,
               section_id: section.id,
               quick_add: section.settings.quick_add
@@ -183,7 +184,6 @@
       </div>
     {%- endif -%}
     </slideshow-component>
-
 
     {%- if section.settings.show_view_all and more_in_collection -%}
       <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -420,6 +420,12 @@
       "id": "show_vendor",
       "default": false,
       "label": "t:sections.featured-collection.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_swatches",
+      "default": true,
+      "label": "show swatches"
     },
     {
       "type": "checkbox",

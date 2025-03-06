@@ -1,3 +1,8 @@
+@media (min-width: 750px) {
+  .complementary-products {
+    display: none;
+  }
+}
 .complementary-products__container {
   display: flex;
   flex-direction: column;
@@ -45,11 +50,8 @@ product-recommendations:not(.is-accordion) .complementary-products__container {
 }
 
 .complementary-slide.grid__item {
-  width: 100%;
-  padding-top: max(var(--focus-outline-padding), var(--shadow-padding-top));
-  padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
-  padding-right: max(var(--focus-outline-padding), var(--shadow-padding-sides));
-  padding-left: max(var(--focus-outline-padding), var(--shadow-padding-sides-negative));
+  width: 40%;
+  padding: 0;
 }
 
 .complementary-slide .card-wrapper {
@@ -60,6 +62,13 @@ product-recommendations:not(.is-accordion) .complementary-products__container {
   display: flex;
   line-height: 1;
   padding: 1.5rem 0;
+}
+
+.complementary-products_title {
+  font-family: var(--font-body-family);
+  font-weight: 100;
+  text-transform: uppercase;
+  font-size: 16px;
 }
 
 .accordion + product-recommendations .accordion,

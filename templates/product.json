@@ -1,1 +1,311 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"text","settings":{"text":"{{ product.vendor }}","text_style":"uppercase"}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"description":{"type":"description","settings":{}},"share":{"type":"share","settings":{"share_label":"Share"}}},"block_order":["vendor","title","price","variant_picker","quantity_selector","buy_buttons","description","share"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"large","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"stacked","media_position":"left","image_zoom":"lightbox","mobile_thumbnails":"hide","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"related-products":{"type":"related-products","settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"columns_mobile":"2","padding_top":36,"padding_bottom":28}}},"order":["main","related-products"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "custom_liquid_KyziYG": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<nav class=\"breadcrumbs\" aria-label=\"Breadcrumb\">\n  <ul>\n    <li>\n      <a href=\"{{ routes.root_url }}\">Home</a>\n    </li>\n\n    {%- if template contains 'product' -%}\n      <li>\n        <a href=\"{{ product.collections.first.url }}\">{{ product.collections.first.title }}</a>\n      </li>\n      <li>\n        <span>{{ product.title }}</span>\n      </li>\n\n    {%- elsif template contains 'collection' and collection.handle -%}\n      <li>\n        <span>{{ collection.title }}</span>\n      </li>\n\n    {%- elsif template contains 'blog' -%}\n      <li>\n        <a href=\"{{ blog.url }}\">{{ blog.title }}</a>\n      </li>\n\n      {%- if article -%}\n        <li>\n          <span>{{ article.title }}</span>\n        </li>\n      {%- endif -%}\n\n    {%- elsif template contains 'page' -%}\n      <li>\n        <span>{{ page.title }}</span>\n      </li>\n\n    {%- elsif template contains 'cart' -%}\n      <li>\n        <span>{{ 'general.breadcrumbs.cart' | t }}</span>\n      </li>\n\n    {%- elsif template contains 'search' -%}\n      <li>\n        <span>{{ 'general.breadcrumbs.search' | t }}</span>\n      </li>\n    {%- endif -%}\n  </ul>\n</nav>\n<style>\n  .breadcrumbs {\ndisplay: none;\n  font-size: 14px;\n}\n@media(min-width: 950px) {\n.breadcrumbs {\ndisplay: block;\n}\n}\n.breadcrumbs ul {\n  display: flex;\n  list-style: none;\n  padding: 10px 0 0 0;\n  margin: 0;\n}\n\n.breadcrumbs li {\n  margin-right: 8px;\n}\n\n.breadcrumbs li:not(:last-child)::after {\n  content: \"•\";\n  margin-left: 8px;\n  color: #1f727c;\n}\n\n.breadcrumbs li a {\n  text-decoration: none;\n  color: #1f727c;\n}\n\n.breadcrumbs li a:hover {\n  color: #1f727c;\n}\n\n.breadcrumbs li span {\n  color:#1f727c;\n}\n\n</style>"
+          }
+        },
+        "text_AqtYNM": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "body"
+          }
+        },
+        "title_RP4VLD": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_3XrXTx": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_hGUUzQ": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "EXAMPLE",
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.lorem_ipsum | metafield_tag }}</p><p></p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_VPtRec": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "COMPOSITION",
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.test.value }}</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_kNq4Uw": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "TEST",
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.test2.value }}</p>",
+            "page": ""
+          }
+        },
+        "complementary_MarLEK": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Complete your look",
+            "make_collapsible_row": false,
+            "icon": "price_tag",
+            "product_list_limit": 4,
+            "products_per_page": 1,
+            "pagination_style": "dots",
+            "image_ratio": "portrait",
+            "enable_quick_add": false
+          }
+        }
+      },
+      "block_order": [
+        "custom_liquid_KyziYG",
+        "text_AqtYNM",
+        "title_RP4VLD",
+        "price",
+        "variant_picker_3XrXTx",
+        "buy_buttons",
+        "description",
+        "collapsible_tab_hGUUzQ",
+        "collapsible_tab_VPtRec",
+        "collapsible_tab_kNq4Uw",
+        "complementary_MarLEK"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "columns",
+        "media_position": "left",
+        "image_zoom": "none",
+        "mobile_thumbnails": "hide",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 12
+      }
+    },
+    "slideshow_pHxHWx": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_KzfAeP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/guardian-angel-earrings_925x_58872c10-9f30-41ac-90d0-f8fa0857d704.jpg",
+            "heading": "JUST IN",
+            "heading_size": "h1",
+            "subheading": "FLATTERING LOOKS FOR EVERY OCCASION",
+            "vendor": "{{ product.vendor }}",
+            "button_label": "SHOP NOW",
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "box_align": "top-right",
+            "show_text_box": true,
+            "text_alignment": "left",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-024728e5-ae31-4f26-847a-e8676099fb66",
+            "text_alignment_mobile": "left"
+          }
+        },
+        "slide_TWjPqM": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/threader-necklace-closeup_925x_f991e800-80bf-4536-a498-8d837048d384.jpg",
+            "heading": "JUST IN",
+            "heading_size": "h1",
+            "subheading": "FLATTERING LOOKS FOR EVERY OCCASION",
+            "vendor": "{{ product.vendor }}",
+            "button_label": "SHOP NOW",
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "box_align": "top-right",
+            "show_text_box": true,
+            "text_alignment": "left",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-024728e5-ae31-4f26-847a-e8676099fb66",
+            "text_alignment_mobile": "left"
+          }
+        },
+        "slide_bimJCG": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/galaxy-earrings_925x_67c53022-56fa-48f2-bf9c-5bad8e9c37ed.jpg",
+            "heading": "JUST IN",
+            "heading_size": "h1",
+            "subheading": "FLATTERING LOOKS FOR EVERY OCCASION",
+            "vendor": "{{ product.vendor }}",
+            "button_label": "SHOP NOW",
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "box_align": "top-right",
+            "show_text_box": true,
+            "text_alignment": "left",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-024728e5-ae31-4f26-847a-e8676099fb66",
+            "text_alignment_mobile": "left"
+          }
+        }
+      },
+      "block_order": [
+        "slide_KzfAeP",
+        "slide_TWjPqM",
+        "slide_bimJCG"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": true,
+        "show_swatches": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "featured_collection_hMcFYm": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_swatches": true,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_PDTLnJ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_3jxxEq": {
+          "type": "heading",
+          "settings": {
+            "heading": "LIMITED TIME ONLY",
+            "heading_size": "h2"
+          }
+        },
+        "caption_R7wpHn": {
+          "type": "caption",
+          "settings": {
+            "caption": "SALE UP TO 40% OFF",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "large"
+          }
+        },
+        "button_7VLwyX": {
+          "type": "button",
+          "settings": {
+            "button_label": "SHOP NOW",
+            "button_link": "shopify://collections",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        },
+        "timer_HMLiBC": {
+          "type": "timer",
+          "settings": {
+            "finish_date": "2045-06-01",
+            "finish_time": "12:00"
+          }
+        }
+      },
+      "block_order": [
+        "heading_3jxxEq",
+        "caption_R7wpHn",
+        "button_7VLwyX",
+        "timer_HMLiBC"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_pHxHWx",
+    "related-products",
+    "featured_collection_hMcFYm",
+    "rich_text_PDTLnJ"
+  ]
+}
