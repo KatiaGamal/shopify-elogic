@@ -8,13 +8,95 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
+
+<script>
+  function initDialog () {
+    let myDialog = document.querySelector("#popup");
+    let showButtons = document.querySelectorAll(".open-popup");
+    let closeButton = document.querySelector("#close-popup");
+
+    showButtons.forEach(button => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        myDialog.showModal();
+      });
+    });
+
+    closeButton.addEventListener("click", () => {
+      myDialog.close();
+    });
+  };
+</script>
+
+<dialog id="popup"class="custom-popup">
+  <button id="close-popup" class="custom-popup_button" autofocus>
+    <span class="svg-wrapper">
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </span>
+  </button>
+  <p style="text-align: center;">Hello :D</p>
+</dialog>
+
+<style>
+  .custom-style {
+    text-transform: uppercase; 
+    font-weight: bold; 
+    font-family: var(--font-heading-family); 
+    letter-spacing: 2px;
+    font-size: 16px;
+  }
+
+  .custom-style_value {
+    text-transform: none; 
+    font-weight: 200; 
+    font-family: var(--font-body-family);
+  }
+
+  .custom-popup {
+    position: sticky;
+    border-radius: 0.5rem;
+    width: 100vw;
+    min-height: 12rem;
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #1f727c;
+    background-color: #1f727cbf;
+    color: white;
+    text-transform: uppercase;
+    font-family: var(--font-heading-family);
+  }
+
+  .custom-popup_button {
+    display: inline-block;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .size-popups {
+    display: flex;
+    justify-content: space-between;
+    max-width: 440px;
+    margin: 30px 0;
+    text-decoration: none;
+    font-family: var(--font-heading-family);
+    letter-spacing: 2px;
+    color: #1f727c;
+  }
+
+  .size-popups-link {
+    color: #1f727c;
+  }
+</style>
+
 {%- unless product.has_only_default_variant -%}
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
     {{ block.shopify_attributes }}
   >
-    {%- for option in product.options_with_values -%}
+    {%- for option in product.options_with_values -%} 
       {%- liquid
         assign swatch_count = option.values | map: 'swatch' | compact | size
         assign picker_type = block.settings.picker_type
@@ -27,11 +109,23 @@
           endif
         endif
       -%}
+
+      {%- if option.name == 'Size' -%}
+        <div class="size-popups">
+          <a class="size-popups-link open-popup" href="#" id="open-popup">&#9432 FIND MY SIZE </a>
+          <span>|</span>
+          <a class="size-popups-link open-popup" href="#" id="open-popup">SIZE CHART </a>
+        </div>
+        <script>
+          initDialog();
+        </script>
+      {%- endif -%}
+
       {%- if picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
-          <legend class="form__label">
+          <legend class="form__label custom-style">
             {{ option.name }}:
-            <span data-selected-value>
+            <span data-selected-value class="custom-style_value">
               {{- option.selected_value -}}
             </span>
           </legend>
@@ -44,7 +138,12 @@
         </fieldset>
       {%- elsif picker_type == 'button' -%}
         <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
+          <legend class="form__label custom-style">
+            {{ option.name }}:
+            <span data-selected-value class="custom-style_value">
+              {{- option.selected_value -}}
+            </span>
+          </legend>
           {% render 'product-variant-options',
             product: product,
             option: option,
