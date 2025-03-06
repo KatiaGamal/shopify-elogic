@@ -22,8 +22,15 @@
     gap: 15px;
     padding: 12px 0;
   }
+
+  @media (min-width: 300px) and (max-width:360px){
+    .cart_block-card {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
   .vendor-caption {
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     text-transform: uppercase;
   }
   .name-caption {
@@ -36,7 +43,9 @@
     font-size: 1.2rem;
   }
 
-
+  .cart-item__content .swym-button-bar {
+    display: none;
+  }
 </style>
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
@@ -155,7 +164,7 @@
                               </strong>
                             </div>
                           {%- else -%}
-                            <div class="product-option">
+                            <div class="product-option" style="margin-top: 16px;">
                               {{ item.original_price | money }}
                             </div>
                           {%- endif -%}
@@ -365,25 +374,6 @@
         </form>
       </cart-drawer-items>
       <div class="drawer__footer">
-        {%- if settings.show_cart_note -%}
-          <details id="Details-CartDrawer">
-            <summary>
-              <span class="summary__title">
-                {{ 'sections.cart.note' | t }}
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </span>
-            </summary>
-            <cart-note class="cart__note field">
-              <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
-              <textarea
-                id="CartDrawer-Note"
-                class="text-area text-area--resize-vertical field__input"
-                name="note"
-                placeholder="{{ 'sections.cart.note' | t }}"
-              >{{ cart.note }}</textarea>
-            </cart-note>
-          </details>
-        {%- endif -%}
 
         <!-- Start blocks -->
         <!-- Subtotals -->
@@ -464,9 +454,14 @@
           >
             {{ 'sections.cart.checkout' | t }}
           </button>
+          <a href="{{ routes.cart_url }}" class="cart__checkout-button button" style="background-color: #1F727C;">
+            Open Cart
+          </a>
+
+          </a>
           <a href="{{ routes.all_products_collection_url }}" class="underlined-link" style="text-transform: uppercase;">
-        {{- 'general.continue_shopping' | t -}}
-      </a>
+            {{- 'general.continue_shopping' | t -}}
+          </a>
         </div>
       </div>
     </div>

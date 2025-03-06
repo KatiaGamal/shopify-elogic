@@ -325,18 +325,6 @@ cart-drawer-items {
   transform: rotate(180deg);
 }
 
-.cart-drawer .cart__checkout-button {
-  max-width: none;
-  background-color: #ff8674;
-  color: white;
-  text-transform: uppercase;
-}
-
-.cart-drawer .cart__checkout-button:hover {
-  --border-opacity: none;
-  color: #1F727C;
-}
-
 .drawer__footer .cart__dynamic-checkout-buttons {
   max-width: 100%;
 }

@@ -15,6 +15,18 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  @media (min-width: 950px) {
+    .cart__ctas--cart_footer {
+      flex-direction: row;
+    }
+  }
+
+  .cart__ctas--cart_footer a {
+    text-transform: uppercase;
+    min-width: 20rem;
+    align-self: center;
+  }
 {%- endstyle -%}
 
 <div
@@ -26,9 +38,10 @@
     <div class="cart__footer isolate section-{{ section.id }}-padding">
       {%- if settings.show_cart_note -%}
         <cart-note class="cart__note field">
-          <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
+          <label for="Cart-note">Leave a note with your order</label>
           <textarea
             class="text-area field__input"
+            style="background-color: #FFFBF8;"
             name="note"
             form="cart"
             id="Cart-note"
@@ -59,8 +72,8 @@
                 </div>
 
                 <div class="totals">
-                  <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-                  <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+                  <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }} :</h2>
+                  <p class="totals__total-value">{{ cart.total_price | money }}</p>
                 </div>
 
                 <small class="tax-note caption-large rte">
@@ -104,7 +117,10 @@
                 </small>
               </div>
             {%- else -%}
-              <div class="cart__ctas" {{ block.shopify_attributes }}>
+              <div class="cart__ctas cart__ctas--cart_footer" {{ block.shopify_attributes }}>
+                <a href="{{ routes.all_products_collection_url }}" class="underlined-link">
+                  {{- 'general.continue_shopping' | t -}}
+                </a>
                 <button
                   type="submit"
                   id="checkout"

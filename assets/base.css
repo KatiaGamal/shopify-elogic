@@ -2036,6 +2036,20 @@ input[type='checkbox'] {
   visibility: hidden;
 }
 
+.cart__checkout-button {
+  max-width: none;
+  background-color: #ff8674;
+  color: white;
+  text-transform: uppercase;
+  transition: all .25s;
+
+}
+
+.cart__checkout-button:hover {
+  --border-opacity: none;
+  letter-spacing: 4px;
+} 
+
 /* component-modal */
 .modal__toggle {
   list-style-type: none;
