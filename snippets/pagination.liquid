@@ -10,7 +10,17 @@
   - paginate: {Object}
   - anchor: {String} (optional) This can be added so that on page reload it takes you to wherever you've placed your anchor tag.
 {% endcomment %}
-
+<style>
+  .pagination__info {
+    height: 40px;
+    width: 80px;
+    font-size: 25px;
+  }
+  .pagination_button {
+    width: 45px;
+    height: 40px;
+  }
+</style>
 {{ 'component-pagination.css' | asset_url | stylesheet_tag }}
 
 {%- if paginate.parts.size > 0 -%}
@@ -18,7 +28,7 @@
     <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
       <ul class="pagination__list list-unstyled" role="list">
         {%- if paginate.previous -%}
-          <li>
+          <li class="pagination_button">
             <a
               href="{{ paginate.previous.url }}{{ anchor }}"
               class="pagination__item pagination__item--next pagination__item-arrow link motion-reduce"
@@ -30,37 +40,12 @@
             </a>
           </li>
         {%- endif -%}
-
-        {%- for part in paginate.parts -%}
-          <li>
-            {%- if part.is_link -%}
-              <a
-                href="{{ part.url }}{{ anchor }}"
-                class="pagination__item link"
-                aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
-              >
-                {{- part.title -}}
-              </a>
-            {%- else -%}
-              {%- if part.title == paginate.current_page -%}
-                <a
-                  role="link"
-                  aria-disabled="true"
-                  class="pagination__item pagination__item--current light"
-                  aria-current="page"
-                  aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
-                >
-                  {{- part.title -}}
-                </a>
-              {%- else -%}
-                <span class="pagination__item">{{ part.title }}</span>
-              {%- endif -%}
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
+        <li class="pagination__info">
+          {{ paginate.current_page }} OF {{ paginate.pages }}
+        </li>
 
         {%- if paginate.next -%}
-          <li>
+          <li class="pagination_button">
             <a
               href="{{ paginate.next.url }}{{ anchor }}"
               class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce"
@@ -68,6 +53,20 @@
             >
               <span class="svg-wrapper">
                 {{- 'icon-caret.svg' | inline_asset_content -}}
+              </span>
+            </a>
+          </li>
+        {%- endif -%}
+
+        {%- if paginate.pages > 1 and paginate.current_page < paginate.pages -%}
+          <li class="pagination_button">
+            <a
+              href="{{ request.path }}?page={{ paginate.pages }}{{ anchor }}"
+              class="pagination__item pagination__item-arrow link motion-reduce"
+              aria-label="{{ 'general.pagination.next' | t }}"
+            >
+              <span class="svg-wrapper" style="height: 16px;">
+                {{- 'button-end.svg' | inline_asset_content -}}
               </span>
             </a>
           </li>
