@@ -38,6 +38,10 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    .font {
+      font-size: 24px;
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -96,6 +100,11 @@
                     text-transform: uppercase;
                     font-size: 22px;
                   }
+
+                  .product__title--main-prod {
+                    margin: 0;
+                  }
+
                   .custom-product-title {
                     font-size: 16px;
                     font-family: var(--font-body-family);
@@ -124,7 +133,7 @@
                   </ul>
                 </nav>
               {%- when 'title' -%}
-                <div class="product__title" {{ block.shopify_attributes }} style="margin: 0;">
+                <div class="product__title product__title--main-prod" {{ block.shopify_attributes }}">
                   <h1 class="custom-product-title">{{ product.title | escape }}</h1>
                   <a href="{{ product.url }}" class="product__title">
                     <h2 class="h1">
@@ -133,7 +142,7 @@
                   </a>
                 </div>
               {%- when 'price' -%}
-                <div style="font-size: 24px;" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                <div class="font" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
                     product: product,
                     use_variant: true,

@@ -20,6 +20,10 @@
     width: 45px;
     height: 40px;
   }
+  .pagination_button .svg-wrapper {
+    height: 16px;
+  }
+
 </style>
 {{ 'component-pagination.css' | asset_url | stylesheet_tag }}
 
@@ -65,7 +69,7 @@
               class="pagination__item pagination__item-arrow link motion-reduce"
               aria-label="{{ 'general.pagination.next' | t }}"
             >
-              <span class="svg-wrapper" style="height: 16px;">
+              <span class="svg-wrapper">
                 {{- 'button-end.svg' | inline_asset_content -}}
               </span>
             </a>

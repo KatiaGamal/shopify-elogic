@@ -696,6 +696,14 @@
                   background-color: rgb(var(--color-background));
                   background: var(--gradient-background);
                 }
+
+                .facets__footer-width {
+                  width: 100%;
+                }
+
+                .footer-button-box .mobile-facets__clear-wrapper {
+                  background-color: #1f727c;
+                }
               </style>
 
               <div class="mobile-facets__footer"> 
@@ -715,7 +723,6 @@
                   </button>
                   <facet-remove 
                     class="mobile-facets__clear-wrapper" 
-                    style="background-color: #1f727c;"
                   >
                     <a href="{{ results_url }}" class="button mobile-facets__clear remove-button">
                       {{- 'products.facets.reset' | t -}}

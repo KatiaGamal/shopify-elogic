@@ -234,6 +234,10 @@ product-info {
   max-width: 100%;
 }
 
+.product__description {
+  letter-spacing: 3px;
+}
+
 .product__info-container .product-form,
 .product__info-container .product__description,
 .product__info-container .icon-with-text {

@@ -34,7 +34,7 @@
       {{- 'icon-close.svg' | inline_asset_content -}}
     </span>
   </button>
-  <p style="text-align: center;">Hello :D</p>
+  <p class="custom-popup_text">Hello :D</p>
 </dialog>
 
 <style>
@@ -51,6 +51,16 @@
     font-weight: 200; 
     font-family: var(--font-body-family);
   }
+
+  @media (min-width: 950px) {
+    .custom-style {
+      display: flex;
+      flex-direction: column;
+    }
+    .custom-style_value {
+      text-transform: uppercase; 
+    }
+  } 
 
   .custom-popup {
     position: sticky;
@@ -72,6 +82,10 @@
     color: white;
     border: none;
     cursor: pointer;
+  }
+
+  .custom-popup_text {
+    text-align: center
   }
 
   .size-popups {

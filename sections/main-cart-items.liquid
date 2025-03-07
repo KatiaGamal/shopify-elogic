@@ -17,6 +17,14 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .margin {
+    margin-top: 3rem;
+  }
+
+  .cart-title .title {
+    font-size: 2rem;
+  }
 {%- endstyle -%}
 
 {%- unless settings.cart_type == 'drawer' -%}
@@ -26,9 +34,11 @@
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
 <cart-items class="gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
-  <div class="page-width" style="margin-top: 3rem;">
+  <div class="page-width margin">
     <div class="cart-title title-wrapper-with-link">
-      <h1 class="title title--primary" style="font-size: 2rem;">Your basket</h1>
+      <h1 class="title title--primary">
+        {{ 'sections.cart.your_basket' | t }}
+      </h1>
     </div>
 
     <div class="cart__warnings">
@@ -70,7 +80,10 @@
           font-size: 2rem;
         }
       }
-  
+      
+      .cart-item__details .name-caption {
+        text-transform:capitalize;
+      }
     </style>
 
     <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
@@ -126,7 +139,7 @@
                         <p class="vendor-caption caption-with-letter-spacing">{{ item.product.vendor }}</p>
                       {%- endif -%}
 
-                      <a href="{{ item.url }}" class="name-caption" style="text-transform:capitalize;">{{ item.product.title | escape }}</a>
+                      <a href="{{ item.url }}" class="name-caption">{{ item.product.title | escape }}</a>
                       <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                         {%- for discount in item.line_level_discount_allocations -%}
                           <li class="discounts__discount">

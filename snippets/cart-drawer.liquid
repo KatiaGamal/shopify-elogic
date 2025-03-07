@@ -23,7 +23,7 @@
     padding: 12px 0;
   }
 
-  @media (min-width: 300px) and (max-width:360px){
+  @media (min-width: 300px) and (max-width:350px){
     .cart_block-card {
       flex-direction: column;
       align-items: center;
@@ -45,6 +45,22 @@
 
   .cart-item__content .swym-button-bar {
     display: none;
+  }
+
+  .cart-item__details .product-option {
+    margin-top: 16px;
+  }
+
+  .cart__checkout-button--green {
+    background-color: #1F727C;
+  }
+
+  .underline {
+    text-decoration: underline;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
   }
 </style>
 
@@ -164,7 +180,7 @@
                               </strong>
                             </div>
                           {%- else -%}
-                            <div class="product-option" style="margin-top: 16px;">
+                            <div class="product-option">
                               {{ item.original_price | money }}
                             </div>
                           {%- endif -%}
@@ -251,10 +267,9 @@
                                 >
                                   <button
                                     type="button"
-                                    class="button button--tertiary cart-remove-button"
+                                    class=" underline button button--tertiary cart-remove-button"
                                     aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
                                     data-variant-id="{{ item.variant.id }}"
-                                    style="text-decoration: underline;"
                                   >
                                     REMOVE
                                   </button>
@@ -454,12 +469,12 @@
           >
             {{ 'sections.cart.checkout' | t }}
           </button>
-          <a href="{{ routes.cart_url }}" class="cart__checkout-button button" style="background-color: #1F727C;">
+          <a href="{{ routes.cart_url }}" class="cart__checkout-button cart__checkout-button--green button">
             Open Cart
           </a>
 
           </a>
-          <a href="{{ routes.all_products_collection_url }}" class="underlined-link" style="text-transform: uppercase;">
+          <a href="{{ routes.all_products_collection_url }}" class="uppercase underlined-link">
             {{- 'general.continue_shopping' | t -}}
           </a>
         </div>

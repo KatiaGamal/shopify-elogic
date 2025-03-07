@@ -27,6 +27,15 @@
     min-width: 20rem;
     align-self: center;
   }
+
+  .cart__note .field__input {
+    background-color: #FFFBF8;
+  }
+  .cart__note .field__input::placeholder {
+  opacity: 1;
+  color: #1f727c;
+  font-size: 14px;
+}
 {%- endstyle -%}
 
 <div
@@ -38,10 +47,9 @@
     <div class="cart__footer isolate section-{{ section.id }}-padding">
       {%- if settings.show_cart_note -%}
         <cart-note class="cart__note field">
-          <label for="Cart-note">Leave a note with your order</label>
+          <label for="Cart-note"></label>
           <textarea
             class="text-area field__input"
-            style="background-color: #FFFBF8;"
             name="note"
             form="cart"
             id="Cart-note"
